@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('group-project-2:server');
 var http = require('http');
+var sequelize = require('../config/connection');
 
 /**
  * Get port from environment and store in Express.
@@ -25,9 +26,12 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+sequelize.sync({ force: false }).then(() => {
+  server.listen(port);
+  server.on('error', onError);
+  server.on('listening', onListening);
+});
+
 
 /**
  * Normalize a port into a number, string, or false.
