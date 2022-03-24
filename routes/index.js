@@ -1,11 +1,17 @@
 var express = require('express');
 var router = express.Router();
-const models = require('../models');
-const authMiddleware = require("../middlewares/auth")
 
-/* GET home page. */
-router.get('/', /*authMiddleware.authorize,*/ function (req, res) {
-  res.render('index', { logged_in: true });
-});
+// route requires -> require new route files here
+const homeRoutes = require('./home');
+const userRoutes = require('./users');
+const tripRoutes = require('./trip');
+const galleryRoutes = require('./galleries');
+
+// use routes -> add in new routes here
+router.use('/galleries', galleryRoutes);
+router.use('/trips', tripRoutes);
+router.use('/users', userRoutes);
+router.use('/', homeRoutes);
+
 
 module.exports = router;
