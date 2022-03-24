@@ -1,0 +1,4 @@
+{
+  "heroku_db": "JAWSDB_URL",
+  "dialect": "mysql"
+}
