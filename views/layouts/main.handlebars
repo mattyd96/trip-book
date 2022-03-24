@@ -10,7 +10,25 @@
     {{!-- <link rel="stylesheet" href="/css/{{style}}.css"> --}}
 </head>
 <body>
-  {{> nav}}
+  <nav>
+  <div id="logo">
+    <a href="/">TripBook</a>
+    <div class="hamburger" onclick="navToggle()">
+      <i class="fa fa-bars hamburger-icon"></i>
+      <i class="fa fa-close close-icon mobile-hide"></i>
+    </div>
+  </div>
+  <ul class="menu-items mobile-hide">
+    <li><a href="/">Home</a></li>
+    <li><a href="/dashboard">Dashboard</a></li>
+    {{#if logged_in}}
+    <li onclick="logout()">Logout</li>
+    {{else}}
+    <li><a href="/login">Login</a></li>
+    <li><a href="/signup">Sign Up</a></li>
+    {{/if}} 
+  </ul>
+</nav>
   <main class="main-container">
     {{{body}}}
   </main>

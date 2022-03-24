@@ -5,7 +5,7 @@ const authMiddleware = require("../middlewares/auth")
 
 /* GET home page. */
 router.get('/', /*authMiddleware.authorize,*/ function (req, res) {
-  res.render('index', { isLoggedIn: true });
+  res.render('index', { logged_in: true });
 });
 
 module.exports = router;
