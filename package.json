@@ -8,6 +8,7 @@
     "seed": "node seeds/seed.js"
   },
   "dependencies": {
+    "@shopify/draggable": "^1.0.0-beta.8",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.2",
     "cookie-parser": "~1.4.4",
