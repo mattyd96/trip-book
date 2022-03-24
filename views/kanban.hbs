@@ -1,0 +1,54 @@
+<!-- kanban container -->
+<section class="kanban">
+
+  <!-- first column : ideas -->
+  <div class="column c1">
+    <section class="column-head">
+      <h2>Ideas</h2>
+      <button class="add-item">Add</button>
+    </section>   
+    <section class="items">
+      {{#each c1ItemList}}
+      {{> kanaban-card}}
+      {{/each}}
+    </section>
+  </div>
+
+  <!-- second column : planned -->
+  <div class="column c2">
+    <h2>Planned</h2>
+    <section class="items">
+      {{#each c2ItemList}}
+      {{> kanaban-card}}
+      {{/each}}
+    </section>
+  </div>
+
+  <!-- third column : finished -->
+  <div class="column c3">
+    <h2>Finished</h2>
+    <section class="items">
+      {{#each c3ItemList}}
+      {{> kanaban-card}}
+      {{/each}}
+    </section>
+  </div>
+</section>
+
+<!-- add item modal -->
+<aside class="modal-container hidden">
+  <article class="modal">
+    <section class="modal-heading">
+      <h2>Add a new item</h2>
+    </section>
+    <section class="modal-content">
+      <form action="POST">
+        <textarea name="content" id="content" cols="30" rows="10"></textarea>
+        <section class="action-btns">
+          <button type="button" class="cancel-btn">Cancel</button>
+          <button class="add-btn">Add</button>
+        </section>
+      </form>
+    </section>
+  </article>
+</aside>
