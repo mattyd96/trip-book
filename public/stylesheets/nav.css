@@ -1,0 +1,72 @@
+/* Navbar */
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem auto;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.2rem;
+  margin: 0;
+  color: var(--nav-text);
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+nav li:hover, nav a:hover {
+  color: var(--nav-text-hover);
+  cursor: pointer;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--nav-text);
+}
+
+#logo {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.hamburger {
+  display: none;
+}
+
+.error {
+  border-color: red;
+}
+
+.hidden {
+  display: none;
+}
+
+@media screen and (max-width: 700px) {
+  nav, nav ul {
+    flex-direction: column;
+  }
+
+  nav ul {
+    margin-top: 2rem;
+    text-align: center;
+    padding: 0;
+  }
+
+  #logo {
+    display: flex;
+    justify-content: space-between;
+    align-self: stretch;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .mobile-hide {
+    display: none;
+  }
+
+}
