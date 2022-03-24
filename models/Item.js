@@ -1,4 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize/types');
 const sequelize = require('../config/connection');
 
 class Item extends Model {}
@@ -43,6 +44,14 @@ Item.init(
       type: DataTypes.DATE,
       allowNull: false,
     },
+    column: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    index: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   },
   {
     sequelize,
