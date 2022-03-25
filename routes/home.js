@@ -5,7 +5,7 @@ const models = require('../models');
 const { userAuth, userAuthFetch } = require("../middlewares/auth")
 
 /* GET home page. */
-router.get('/', userAuth, renderHome);
+router.get('/', renderHome);
 
 
 
