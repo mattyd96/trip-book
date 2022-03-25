@@ -1,11 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const {} = require('../controllers/dashboard');
+const controller = require('../controllers/dashboard');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  const user = req.session.id;
-  res.send('respond with a resource');
-});
+// GET user dashboard -> populate and render
+router.get('/', controller.getDash);
 
 module.exports = router;
