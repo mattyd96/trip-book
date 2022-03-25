@@ -1,6 +1,8 @@
 <section class="home-container">
   <section class="hero-image"></section>
-  <section class="form-container">
+  <section class="forms-container">
+
+    <!-- signup form -->
     <form id="signup-form" class="flex">
       <div class="form-input">
         <label for="signup-username">Username</label>
@@ -21,8 +23,24 @@
       </div>
       
       <button type="submit">Sign Up</button>
-
-      <a href="/login">Already have an account?</a>
     </form>
+
+    <!-- login form -->
+    <form id="login-form">
+      <div class="form-input">
+          <label for="login-id">Email or Username</label>
+          <input name="id" id="login-id">
+      </div>
+
+      <div class="form-input">
+          <label for="login-password">Password</label>
+          <input type="password" name="password" id="login-password">
+      </div>
+
+      <div id="login-error" class="hidden">Credentials not valid, please check your entry</div>
+      
+      <button type="submit">Login</button>
+    </form>
+    
   </section>
 </section>
