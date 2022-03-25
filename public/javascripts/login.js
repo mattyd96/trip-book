@@ -62,7 +62,7 @@ const signup = async (event) => {
 
   try {
     // create user
-    const response = await fetch("/user/signup", {
+    const response = await fetch("/users/signup", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/trip');
+const { userAuth, userAuthFetch } = require("../middlewares/auth");
 
 /* GET all trips and render page */
 router.get('/', function(req, res, next) {
