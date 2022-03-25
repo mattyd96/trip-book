@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-const { renderHome } = require('../controllers/index');
+const express = require('express');
+const router = express.Router();
+const { renderHome } = require('../controllers/home');
 const models = require('../models');
 const authMiddleware = require("../middlewares/auth")
 
