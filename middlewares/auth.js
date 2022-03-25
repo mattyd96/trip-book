@@ -1,19 +1,10 @@
+// general redirect on server side
+const userAuth = (req, res, next) => {
+    req.session.logged_in ? next() : res.redirect('/');
+};
+// general redirect message for fetch request response -> redirect initiated on client side
+const userAuthFetch = (req, res, next) => {
+    req.session.logged_in ? next() : res.status(302).end();
+};
 
-
-const authMiddleware = {}
-
-
-authMiddleware.authorize = async (req, res, next) => {
-
-    const sessionToken = req.cookies['session_token']
-
-    if (!sessionToken) {
-        // If the cookie is not set, return an unauthorized status
-        res.status(401).end()
-        return
-    }
-
-    next()
-}
-
-module.exports = authMiddleware
+module.exports = { userAuth, userAuthFetch };
