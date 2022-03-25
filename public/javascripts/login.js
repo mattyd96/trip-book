@@ -94,7 +94,7 @@ const login = async (event) => {
 
   try{
     // try login
-    const response = await fetch("/user/login", {
+    const response = await fetch("/users/login", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -117,3 +117,4 @@ const login = async (event) => {
 
 if(signupForm) {signupForm.addEventListener("submit", signup);}
 if(loginForm) {loginForm.addEventListener("submit", login);}
+console.log('loaded');

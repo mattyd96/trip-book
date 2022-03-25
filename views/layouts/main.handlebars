@@ -19,16 +19,14 @@
       <i class="fa fa-close close-icon mobile-hide"></i>
     </div>
   </div>
+  {{#if logged_in}}
   <ul class="menu-items mobile-hide">
-    <li><a href="/">Home</a></li>
     <li><a href="/dashboard">Dashboard</a></li>
-    {{#if logged_in}}
+    <li><a href="/trips">Trips</a></li>
+    <li><a href="/galleries">Galleries</a></li>
     <li onclick="logout()">Logout</li>
-    {{else}}
-    <li><a href="/login">Login</a></li>
-    <li><a href="/signup">Sign Up</a></li>
-    {{/if}} 
   </ul>
+  {{/if}} 
 </nav>
   <main class="main-container">
     {{{body}}}

@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { User } = require("../models")
-const uuid = require("uuid")
+const { User } = require("../models");
 const controller = require('../controllers/users');
 
 // GET User -> might not use this one
