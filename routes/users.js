@@ -1,7 +1,8 @@
-var express = require('express');
-var router = express.Router();
-var { User } = require("../models")
-var uuid = require("uuid")
+const express = require('express');
+const router = express.Router();
+const { User } = require("../models")
+const uuid = require("uuid")
+const {} = require('../controllers/users');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
