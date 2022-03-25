@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const { renderHome } = require('../controllers/home');
 const models = require('../models');
-const authMiddleware = require("../middlewares/auth")
+const { userAuth, userAuthFetch } = require("../middlewares/auth")
 
 /* GET home page. */
-router.get('/', /*authMiddleware.authorize,*/ renderHome);
+router.get('/', userAuth, renderHome);
 
 
 

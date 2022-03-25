@@ -27,7 +27,7 @@ User.hasMany(PicNote, {foreignKey: 'user_id'});
 Trip.belongsToMany(User, {through: UserTrip, foreignKey: 'trip_id'});
 
 //Trip has one itinerary
-Trip.hasOne(Itinerary, {foreignKey: 'trip_id'});
+//Trip.hasOne(Itinerary, {foreignKey: 'trip_id'});
 
 //Trip has many Pictures
 Trip.hasMany(Picture, {foreignKey: 'trip_id'});
@@ -39,6 +39,6 @@ Trip.hasMany(TripNote, {foreignKey: 'trip_id'});
 Picture.hasMany(PicNote, {foreignKey: 'trip_id'});
 
 //Itinerary has many items
-Itinerary.hasMany(Item, {foreignKey: 'Itinerary_id', onDelete: 'CASCADE'});
+Trip.hasMany(Item, {foreignKey: 'trip_id', onDelete: 'CASCADE'});
 
 module.exports = { User, Picture, Trip, Itinerary, Item, UserTrip };
