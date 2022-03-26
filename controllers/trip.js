@@ -57,10 +57,9 @@ module.exports = {
 
   // add an item to the kanban
   addKanbanItem: async (req,res) => {
-    console.log(req.body.title);
     try {
       await Item.create({
-        user_id: req.session.id,
+        user_id: req.session.user_id,
         trip_id: req.params.id,
         info: req.body.content,
         title: req.body.title,

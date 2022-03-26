@@ -30,7 +30,6 @@ const sortPost = event => {
   const oldC = event.oldContainer.parentElement.classList[1];
   const newC = event.newContainer.parentElement.classList[1];
 
-  // TODO : get the post route for this functionality
   fetch(`/trips/${currentTrip}/kanban/reorder`, {
     method: 'PUT',
     headers: {"content-type": "application/json"},
@@ -41,7 +40,11 @@ const sortPost = event => {
     if(response.ok) {
       location.reload();
     } else if (response.status === 302) {
-      location.replace('/');
+      if(response.json().reason) {
+        location.replace('/dashboard');
+      } else {
+        location.replace('/');
+      }
     }
   })
   .catch((err) => {
@@ -92,7 +95,6 @@ const addItem = event => {
   const body = {content, title, index}
   const currentTrip = location.pathname.split('/')[2];
 
-  // TODO : get the post route for this functionality
   fetch(`/trips/${currentTrip}/kanban/add`, {
     method: 'POST',
     headers: {"content-type": "application/json"},
@@ -102,7 +104,11 @@ const addItem = event => {
     if(response.ok) {
       location.reload();
     } else if (response.status === 302) {
-      location.replace('/');
+      if(response.json().reason) {
+        location.replace('/dashboard');
+      } else {
+        location.replace('/');
+      }
     }
   })
   .catch((err) => {
@@ -125,7 +131,11 @@ const deleteItem = event => {
     if(response.ok) {
       location.reload();
     } else if (response.status === 302) {
-      location.replace('/');
+      if(response.json().reason) {
+        location.replace('/dashboard');
+      } else {
+        location.replace('/');
+      }
     }
   })
   .catch((err) => {
