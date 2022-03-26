@@ -19,9 +19,12 @@ const sortable = new Draggable.Sortable(document.querySelectorAll('.items'), {
 
 // POST new location of sorted item
 const sortPost = event => {
+  console.log('fired');
   const itemId = event.data.dragEvent.data.source.id;
   const newIndex = event.newIndex;
   const oldIndex = event.oldIndex;
+  const currentTrip = location.pathname.split('/')[2];
+  console.log(currentTrip);
 
   const oldC = event.oldContainer.parentElement.classList[1];
   const newC = event.newContainer.parentElement.classList[1];
@@ -31,19 +34,21 @@ const sortPost = event => {
   console.log(event.oldIndex);
 
   // TODO : get the post route for this functionality
-  fetch('', {
-    method: 'POST',
+  fetch(`/trips/${currentTrip}/kanban/reorder`, {
+    method: 'PUT',
     headers: {"content-type": "application/json"},
-    body: JSON.stringify({itemId, newIndex, oldIndex, oldC, newC})
+    body: JSON.stringify({itemId, newIndex, oldIndex, oldC, newC, currentTrip})
   })
   .then((response) => { 
+    console.log('response');
     if(response.ok) {
       location.reload();
     }
   })
   .catch((err) => {
+    console.log('error');
     console.log(err);
-  })
+  });
 }
 
 // listenter for when sort is ended on user drag
