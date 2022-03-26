@@ -17,7 +17,7 @@ router.get('/:id', controller.getTrip);
 router.post('/add', controller.addTrip);
 
 // DELETE a trip
-router.delete('/:id/delete', controller.deleteTrip);
+router.delete('/delete', controller.deleteTrip);
 
 //------------------------- kanban routes ------------------//
 // GET Kanban of trip

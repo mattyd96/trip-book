@@ -1,11 +1,13 @@
 const {Trip, Item, User} = require('../models');
 const { Op } = require('sequelize');
 
+// helper function to sort items in kanban
 const itemSort = (a, b) => {
   return a.index - b.index;
 }
 
 module.exports = {
+  // get Trip and render trip page
   getTrip: async (req,res) => {
     try{
       // get trip with id
@@ -18,12 +20,39 @@ module.exports = {
       //res.render('trip', {trip_info: trip[0]});
     } catch (err) {}
   },
-  addTrip: (req,res) => {},
-  deleteTrip: (req,res) => {},
+
+  // add a trip
+  addTrip: (req,res) => {
+    try {
+      //create trip
+      await Trip.create({
+        creator_id: req.session.user_id,
+        name: req.body.name
+      });
+      // respond
+      res.status(200).end();
+
+    } catch (err) {
+      res.status(500).json(err);
+    }
+    
+  },
+
+  // delete a trip
+  deleteTrip: async (req,res) => {
+    try {
+      await Trip.destroy({where: {id: req.body.id}});
+
+      res.status(200).end();
+    } catch (err) {
+      res.status(500).json(err);
+    }  
+  },
 
   // render kanban with items
   getKanban: async (req,res) => {
     try {
+      // get all items
       let items = await Item.findAll({
         where: {trip_id: req.params.id},
         include: [{ model: User, attributes: ['username']}]
@@ -58,6 +87,7 @@ module.exports = {
   // add an item to the kanban
   addKanbanItem: async (req,res) => {
     try {
+      // create item
       await Item.create({
         user_id: req.session.user_id,
         trip_id: req.params.id,
@@ -66,7 +96,7 @@ module.exports = {
         column: 1,
         index: req.body.index
       });
-
+      //respond
       res.status(200).end();
     } catch (err) {
       res.status(500).end();
@@ -77,8 +107,9 @@ module.exports = {
   // delete and item from the kanban
   deleteKanbanItem: async (req,res) => {
     try {
+      // delete item
       await Item.destroy({where: {id: req.body.target}});
-
+      //respond
       res.status(200).end();
     } catch (err) {
       res.status(500).end();
@@ -87,6 +118,7 @@ module.exports = {
 
   // reorder kanban items -> activated when dragged on client side
   reorderKanbanItem: async (req,res) => {
+    // get items from request body -> convert column classes into numbers for database
     let {itemId, newIndex, oldIndex, oldC, newC, currentTrip} = req.body;
     oldC = parseInt(oldC.split('')[1]);
     newC = parseInt(newC.split('')[1]);
@@ -109,7 +141,7 @@ module.exports = {
         }
       });
 
-      //update old column of moved item
+      //update new column of moved item
       const newColumnItems = await Item.findAll({where: { trip_id: currentTrip, column: newC, id: {[Op.not]: itemId} }});
       newColumnItems.forEach(item => {
         if(item.index >= newIndex) {
