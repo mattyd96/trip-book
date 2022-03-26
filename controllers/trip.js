@@ -50,19 +50,20 @@ module.exports = {
       c3ItemsList.sort(itemSort);
 
       //render
-      res.render('kanban', {c1ItemsList, c2ItemsList, c3ItemsList, style: 'kanban'});
+      res.render('kanban', {c1ItemsList, c2ItemsList, c3ItemsList, style: 'kanban', logged_in: req.session.logged_in});
 
     } catch (err) {}
   },
 
   // add an item to the kanban
   addKanbanItem: async (req,res) => {
+    console.log(req.body.title);
     try {
       await Item.create({
-        user_id: 1, // TODO make dynamic later req.session.id
+        user_id: req.session.id,
         trip_id: req.params.id,
         info: req.body.content,
-        title: 'something', // TODO make dynamic later
+        title: req.body.title,
         column: 1,
         index: req.body.index
       });

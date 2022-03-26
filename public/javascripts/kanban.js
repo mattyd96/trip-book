@@ -6,6 +6,7 @@ const addBtn = document.querySelector('.add-btn');                 // add item b
 const addForm = document.querySelector('#add-item-form');          // add item button
 const deleteBtn = document.querySelectorAll('.delete-btn');        // delete an item buttons
 const textArea = document.querySelector('#content');               // text area for item content to be added
+const textTitle = document.querySelector('#title');                // input for item title to be added
 
 
 
@@ -29,10 +30,6 @@ const sortPost = event => {
   const oldC = event.oldContainer.parentElement.classList[1];
   const newC = event.newContainer.parentElement.classList[1];
 
-  console.log(oldC);
-  console.log(newC);
-  console.log(event.oldIndex);
-
   // TODO : get the post route for this functionality
   fetch(`/trips/${currentTrip}/kanban/reorder`, {
     method: 'PUT',
@@ -43,6 +40,8 @@ const sortPost = event => {
     console.log('response');
     if(response.ok) {
       location.reload();
+    } else if (response.status === 302) {
+      location.replace('/');
     }
   })
   .catch((err) => {
@@ -87,9 +86,10 @@ const cancelAdd = event => {
 // POST add an item
 const addItem = event => {
   event.preventDefault();
+  const title = textTitle.value;
   const content = textArea.value;
   const index = document.querySelectorAll('.c1 .item').length;
-  const body = {content, index}
+  const body = {content, title, index}
   const currentTrip = location.pathname.split('/')[2];
 
   // TODO : get the post route for this functionality
@@ -101,6 +101,8 @@ const addItem = event => {
   .then((response) => {
     if(response.ok) {
       location.reload();
+    } else if (response.status === 302) {
+      location.replace('/');
     }
   })
   .catch((err) => {
@@ -122,6 +124,8 @@ const deleteItem = event => {
   .then((response) => {
     if(response.ok) {
       location.reload();
+    } else if (response.status === 302) {
+      location.replace('/');
     }
   })
   .catch((err) => {

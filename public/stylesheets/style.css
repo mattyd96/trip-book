@@ -470,4 +470,8 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .hidden {
   display: none;
+}
+
+.flex-col {
+  flex-direction: column;
 } 

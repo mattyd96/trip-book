@@ -42,7 +42,10 @@
       <h2>Add a new item</h2>
     </section>
     <section class="modal-content">
-      <form action="POST" id="add-item-form">
+      <form action="POST" id="add-item-form" class="flex flex-col">
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title">
+        <label for="content">Content</label>
         <textarea name="content" id="content" cols="30" rows="10"></textarea>
         <section class="action-btns">
           <button type="button" class="cancel-btn">Cancel</button>
