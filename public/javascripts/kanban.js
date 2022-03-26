@@ -3,6 +3,7 @@ const modalContainer = document.querySelector('.modal-container'); // modal cont
 const modal = document.querySelector('.modal');                    // modal
 const cancelBtn = document.querySelector('.cancel-btn');           // cancel item add button
 const addBtn = document.querySelector('.add-btn');                 // add item button
+const addForm = document.querySelector('#add-item-form');          // add item button
 const deleteBtn = document.querySelectorAll('.delete-btn');        // delete an item buttons
 const textArea = document.querySelector('#content');               // text area for item content to be added
 
@@ -24,7 +25,6 @@ const sortPost = event => {
   const newIndex = event.newIndex;
   const oldIndex = event.oldIndex;
   const currentTrip = location.pathname.split('/')[2];
-  console.log(currentTrip);
 
   const oldC = event.oldContainer.parentElement.classList[1];
   const newC = event.newContainer.parentElement.classList[1];
@@ -86,12 +86,14 @@ const cancelAdd = event => {
 
 // POST add an item
 const addItem = event => {
+  event.preventDefault();
   const content = textArea.value;
   const index = document.querySelectorAll('.c1 .item').length;
   const body = {content, index}
+  const currentTrip = location.pathname.split('/')[2];
 
   // TODO : get the post route for this functionality
-  fetch('', {
+  fetch(`/trips/${currentTrip}/kanban/add`, {
     method: 'POST',
     headers: {"content-type": "application/json"},
     body: JSON.stringify(body)
@@ -110,8 +112,9 @@ const addItem = event => {
 const deleteItem = event => {
   console.log("delete pressed");
   const target = event.target.value;
+  const currentTrip = location.pathname.split('/')[2];
   
-  fetch('', {
+  fetch(`/trips/${currentTrip}/kanban/delete`, {
     method: 'DELETE',
     headers: {"content-type": "application/json"},
     body: JSON.stringify({target})
@@ -132,7 +135,7 @@ addModalBtn.addEventListener('click', showModal);
 modalContainer.addEventListener('click', hideModal);
 modal.addEventListener('click', modalClick);
 cancelBtn.addEventListener('click', cancelAdd);
-addBtn.addEventListener('click', addItem);
+addForm.addEventListener('submit', addItem);
 
 deleteBtn.forEach(btn => {
   btn.addEventListener('click', deleteItem);

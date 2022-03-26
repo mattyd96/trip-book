@@ -20,14 +20,14 @@ module.exports = {
   },
   addTrip: (req,res) => {},
   deleteTrip: (req,res) => {},
+
+  // render kanban with items
   getKanban: async (req,res) => {
     try {
       let items = await Item.findAll({
         where: {trip_id: req.params.id},
         include: [{ model: User, attributes: ['username']}]
       });
-
-      //console.log(items);
 
       // reduce results
       items = items.map((item) => item.get({ plain: true }));
@@ -49,16 +49,43 @@ module.exports = {
       c2ItemsList.sort(itemSort);
       c3ItemsList.sort(itemSort);
 
-      console.log(c1ItemsList);
-
       //render
       res.render('kanban', {c1ItemsList, c2ItemsList, c3ItemsList, style: 'kanban'});
-      //res.json({c1ItemsList, c2ItemsList, c3ItemsList});
 
     } catch (err) {}
   },
-  addKanbanItem: (req,res) => {},
-  deleteKanbanItem: (req,res) => {},
+
+  // add an item to the kanban
+  addKanbanItem: async (req,res) => {
+    try {
+      await Item.create({
+        user_id: 1, // TODO make dynamic later req.session.id
+        trip_id: req.params.id,
+        info: req.body.content,
+        title: 'something', // TODO make dynamic later
+        column: 1,
+        index: req.body.index
+      });
+
+      res.status(200).end();
+    } catch (err) {
+      res.status(500).end();
+    }
+    
+  },
+
+  // delete and item from the kanban
+  deleteKanbanItem: async (req,res) => {
+    try {
+      await Item.destroy({where: {id: req.body.target}});
+
+      res.status(200).end();
+    } catch (err) {
+      res.status(500).end();
+    }
+  },
+
+  // reorder kanban items -> activated when dragged on client side
   reorderKanbanItem: async (req,res) => {
     let {itemId, newIndex, oldIndex, oldC, newC, currentTrip} = req.body;
     oldC = parseInt(oldC.split('')[1]);
@@ -92,13 +119,16 @@ module.exports = {
           );
         }
       });
-      
+
       //respond
       res.status(200).end();
     } catch (err) {
       res.status(500).end();
     }
   },
+
+
+  //--------------------------------- Gallery controllers --------------------------------------//
   getGallery: (req,res) => {},
   addImage: (req,res) => {},
   deleteImage: (req,res) => {},
