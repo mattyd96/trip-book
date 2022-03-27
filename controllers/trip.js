@@ -235,7 +235,10 @@ module.exports = {
 
   //remove user from trip
   removeUser: async (req, res) => {
-    try {} catch (err) { 
+    try {
+      await UserTrip.destroy({where: {user_id: req.body.user, trip_id: req.params.id}});
+      res.status(200).end();
+    } catch (err) { 
       res.status(500).json(err)
     }
   },

@@ -1,4 +1,4 @@
-const deleteBtn = document.querySelector('.delete-btn');
+const deleteBtn = document.querySelectorAll('.delete-btn');
 const addBtn = document.querySelector('.add-btn');
 const addSubmitBtn = document.querySelector('.add-submit-btn');
 const modalContainer = document.querySelector('.modal-container');
@@ -67,3 +67,9 @@ addBtn.addEventListener('click', addUserModal);
 addSubmitBtn.addEventListener('click', addUser);
 modal.addEventListener('click', preventBubble);
 modalContainer.addEventListener('click', hideModal);
+
+if(deleteBtn) {
+  deleteBtn.forEach(btn => {
+    btn.addEventListener('click', removeUser);
+  })
+}
