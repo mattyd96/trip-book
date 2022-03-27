@@ -464,6 +464,40 @@ Ensure the default browser behavior of the `hidden` attribute.
   }
 }
 
+.absolute {
+  position: absolute;
+}
+
+.top-0 {
+  top: 0px;
+}
+
+.left-0 {
+  left: 0px;
+}
+
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
 .flex {
   display: flex;
 }
@@ -472,12 +506,36 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: none;
 }
 
+.h-full {
+  height: 100%;
+}
+
+.h-44 {
+  height: 11rem;
+}
+
+.max-h-full {
+  max-height: 100%;
+}
+
+.w-full {
+  width: 100%;
+}
+
 .flex-shrink-0 {
   flex-shrink: 0;
 }
 
 .grow {
   flex-grow: 1;
+}
+
+.basis-1\/2 {
+  flex-basis: 50%;
+}
+
+.basis-full {
+  flex-basis: 100%;
 }
 
 .flex-col {
@@ -516,6 +574,24 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-width: 2px;
 }
 
+.border {
+  border-width: 1px;
+}
+
+.border-solid {
+  border-style: solid;
+}
+
+.border-gray-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity));
+}
+
+.border-gray-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(107 114 128 / var(--tw-border-opacity));
+}
+
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -524,6 +600,30 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-gray-300 {
   --tw-bg-opacity: 1;
   background-color: rgb(209 213 219 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#E2CBFF\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(226 203 255 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#8BF1F1\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(139 241 241 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#FFCFCF\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 207 207 / var(--tw-bg-opacity));
+}
+
+.bg-green-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(134 239 172 / var(--tw-bg-opacity));
+}
+
+.bg-black\/25 {
+  background-color: rgb(0 0 0 / 0.25);
 }
 
 .bg-opacity-100 {
@@ -579,6 +679,21 @@ Ensure the default browser behavior of the `hidden` attribute.
   line-height: 1.75rem;
 }
 
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
 .font-medium {
   font-weight: 500;
 }
@@ -609,4 +724,24 @@ Ensure the default browser behavior of the `hidden` attribute.
 .hover\:bg-green-300:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(134 239 172 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-green-500:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(34 197 94 / var(--tw-bg-opacity));
+}
+
+@media (min-width: 768px) {
+
+  .md\:grow {
+    flex-grow: 1;
+  }
+
+  .md\:basis-1\/2 {
+    flex-basis: 50%;
+  }
+
+  .md\:basis-0 {
+    flex-basis: 0px;
+  }
 } 
