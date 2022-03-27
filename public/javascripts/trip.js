@@ -4,6 +4,9 @@ const addSubmitBtn = document.querySelector('.add-submit-btn');
 const modalContainer = document.querySelector('.modal-container');
 const modal = document.querySelector('.modal');
 
+const kanbanLink = document.querySelector('.kanban-link');
+const galleryLink = document.querySelector('.gallery-link');
+
 const removeUser = event => {
   event.preventDefault();
 
@@ -63,10 +66,21 @@ const addUser = event => {
   });
 }
 
+const gotoKanban = () => {
+  location.assign(`${location.pathname}/kanban`);
+}
+
+const gotoGallery = () => {
+  location.assign(`${location.pathname}/gallery`);
+}
+
 addBtn.addEventListener('click', addUserModal);
 addSubmitBtn.addEventListener('click', addUser);
 modal.addEventListener('click', preventBubble);
 modalContainer.addEventListener('click', hideModal);
+
+kanbanLink.addEventListener('click', gotoKanban);
+galleryLink.addEventListener('click', gotogallery);
 
 if(deleteBtn) {
   deleteBtn.forEach(btn => {
