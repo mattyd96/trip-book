@@ -13,8 +13,16 @@ const textTitle = document.querySelector('#title');                // input for 
 //--------------------------- Draggable API -------------------------------------//
 const sortable = new Draggable.Sortable(document.querySelectorAll('.items'), {
   draggable: '.item',
+  classes: {
+    'draggable:over': ['draggable--over', 'bg-opacity-100'],
+  },
   mirror: {
     constrainDimensions: true,
+  },
+  plugins: [SwapAnimation.default, Draggable.Plugins.ResizeMirror],
+  swapAnimation: {
+    duration: 200,
+    easingFunction: 'ease-in-out',
   },
   distance: 5,
 });

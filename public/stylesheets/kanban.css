@@ -8,13 +8,6 @@ html {
   scrollbar-color: blue;
 }
 
-
-.kanban {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
 .column {
   display: flex;
   flex-direction: column;
@@ -23,7 +16,7 @@ html {
   min-width: 15rem;
   min-height: 15rem;
   padding: 1rem 2rem;
-  background-color: #D8E2DC;
+  background-color: #D8FCE6;
   border-radius: .25rem;
 }
 
@@ -31,7 +24,11 @@ html {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1rem;
+}
+
+.column-head h2 {
+  font-weight: 600;
+  font-size: 1.5rem;
 }
 
 .items {
@@ -44,23 +41,8 @@ html {
   scrollbar-width: medium;
 }
 
-.item:hover {
-  cursor: pointer;
-}
-
-.item {
-  background-color: hsla(240, 0%, 0%, .25);
-  border-radius: .25rem;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
 .heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 1rem;
-  background-color: #D9FFC89A;
+  background-color: #8BF1F1;
 }
 
 .c2 .heading {
@@ -69,15 +51,6 @@ html {
 
 .c3 .heading {
   background-color: hsla(240, 0%, 0%, .5);
-}
-
-.content {
-  padding: 0 1rem 1rem 1rem;
-}
-
-.content a {
-  text-decoration: none;
-  color: #D9FFC89A;
 }
 
 .modal-container {
@@ -95,12 +68,13 @@ html {
 .modal {
   background-color: white;
   border-radius: .25rem;
+  width: 90%;
+  max-width: 25rem;
+  margin:auto;
 }
 
 .modal-heading {
   background-color: #FFE5D9;
-  overflow: hidden;
-  padding: 0 1rem;
 }
 
 .modal-content {
@@ -120,13 +94,6 @@ html {
 
 .hidden {
   display: none;
-}
-
-button {
-  padding: .5rem 1rem;
-  border: none;
-  border-radius: .25rem;
-  font-weight: 500;
 }
 
 button:hover {

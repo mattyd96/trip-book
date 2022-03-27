@@ -6,7 +6,8 @@
     "start": "node server.js",
     "watch": "nodemon server.js",
     "seed": "node seeds/seed.js",
-    "build:css": "postcss public/stylesheets/tailwind.css -o public/stylesheets/style.css"
+    "build:css": "postcss public/stylesheets/tailwind.css -o public/stylesheets/style.css",
+    "watch:css": "postcss public/stylesheets/tailwind.css -o public/stylesheets/style.css -w"
   },
   "dependencies": {
     "@shopify/draggable": "^1.0.0-beta.8",

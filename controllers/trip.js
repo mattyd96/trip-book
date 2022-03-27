@@ -22,7 +22,7 @@ module.exports = {
   },
 
   // add a trip
-  addTrip: (req,res) => {
+  addTrip: async (req,res) => {
     try {
       //create trip
       await Trip.create({
@@ -79,7 +79,14 @@ module.exports = {
       c3ItemsList.sort(itemSort);
 
       //render
-      res.render('kanban', {c1ItemsList, c2ItemsList, c3ItemsList, style: 'kanban', logged_in: req.session.logged_in});
+      res.render("kanban", {
+        c1ItemsList,
+        c2ItemsList,
+        c3ItemsList,
+        style: "kanban",
+        logged_in: req.session.logged_in,
+        currentUser: req.session.user_id,
+      });
 
     } catch (err) {}
   },
@@ -107,8 +114,23 @@ module.exports = {
   // delete and item from the kanban
   deleteKanbanItem: async (req,res) => {
     try {
+      //find item and get info
+      const [item] = await Item.findAll({where: {id: req.body.target}});
+      const { column, index } = item;
+
       // delete item
       await Item.destroy({where: {id: req.body.target}});
+
+      // reorder remaining items in column
+      const items = await Item.findAll({where: {column: column, trip_id: req.params.id }});
+
+      // decrease the index of all items with a higher index than the deleted one
+      items.forEach(item => {
+        if (item.index > index) {
+          Item.update({index: item.index - 1}, {where: {id: item.id}});
+        }
+      });
+
       //respond
       res.status(200).end();
     } catch (err) {
@@ -130,27 +152,49 @@ module.exports = {
         { where: {id: itemId} }
       );
 
-      //update old column of moved item
-      const oldColumnItems = await Item.findAll({where: { trip_id: currentTrip, column: oldC }});
-      oldColumnItems.forEach(item => {
-        if(item.index > oldIndex) {
-          Item.update(
-            { index: item.index - 1},
-            { where: {id: item.id} }
-          );
-        }
-      });
-
-      //update new column of moved item
+      const oldColumnItems = await Item.findAll({where: { trip_id: currentTrip, column: oldC, id: {[Op.not]: itemId} }});
       const newColumnItems = await Item.findAll({where: { trip_id: currentTrip, column: newC, id: {[Op.not]: itemId} }});
-      newColumnItems.forEach(item => {
-        if(item.index >= newIndex) {
-          Item.update(
-            { index: item.index + 1},
-            { where: {id: item.id} }
-          );
-        }
-      });
+
+      if(oldC === newC) {
+        //update same column of moved item
+        oldColumnItems.forEach(item => {
+          if(newIndex < oldIndex) {
+            if(item.index >= newIndex && item.index < oldIndex) {
+              Item.update(
+                { index: item.index + 1},
+                { where: {id: item.id} }
+              );
+            }
+          } else if (newIndex > oldIndex) {
+            if(item.index <= newIndex && item.index >= oldIndex) {
+              Item.update(
+                { index: item.index - 1},
+                { where: {id: item.id} }
+              );
+            }
+          }
+        });
+      } else {
+        //update old column of moved item
+        oldColumnItems.forEach(item => {
+          if(item.index > oldIndex) {
+            Item.update(
+              { index: item.index - 1},
+              { where: {id: item.id} }
+            );
+          }
+        });
+
+        //update new column of moved item
+        newColumnItems.forEach(item => {
+          if(item.index >= newIndex) {
+            Item.update(
+              { index: item.index + 1},
+              { where: {id: item.id} }
+            );
+          }
+        });
+      }
 
       //respond
       res.status(200).end();
