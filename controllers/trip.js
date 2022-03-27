@@ -9,15 +9,22 @@ const itemSort = (a, b) => {
 module.exports = {
   // get Trip and render trip page
   getTrip: async (req,res) => {
+    
     try{
       // get trip with id
-      let trip = await Trip.findAll({where: {id: req.params.id}});
+      let trip = await Trip.findAll({
+        where: {id: req.params.id},
+        include: [{ model: User, attributes: ['username', 'id']}]
+      });
 
       // reduce results
       trip = trip.map((t) => t.get({ plain: true }));
 
+      const creator = req.session.id === trip[0].creator_id;
+
       // render trip page -> for now it doesn't exist, uncomment when made
-      //res.render('trip', {trip_info: trip[0]});
+      //res.json(trip);
+      res.render('trip', {trip_info: trip[0], creator, logged_in: req.session.logged_in});
     } catch (err) {}
   },
 

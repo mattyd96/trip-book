@@ -12,7 +12,7 @@ const logout = async () => {
   // logout
   const response = await fetch('/users/logout', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json'}
+    headers: { 'Content-Type': 'application/json' }
   });
   // go to home on success
   if (response.ok) {

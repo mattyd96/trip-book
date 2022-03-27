@@ -1,0 +1,30 @@
+<section class="trips-menu flex flex-wrap gap-4">
+  <section class="kanban-link h-44 basis-full md:basis-0 md:grow flex justify-center items-center bg-[#8BF1F1] rounded">
+    <h2 class="text-3xl font-bold">Trip Kanban</h2>
+  </section>
+  <section class="Gallery-link h-44 basis-full md:basis-0 md:grow flex justify-center items-center bg-[#FFCFCF] rounded">
+    <h2 class="text-3xl font-bold">Pictures!</h2>
+  </section>
+  <section class="users flex flex-col gap-4 w-full">
+    <h2 class="font-bold text-3xl">Users</h2>
+
+    {{#each trip_info.users}}
+    {{> user-card creator='creator'}}
+    {{/each}}
+
+    <button type="button" class="add-btn py-2 px-4 rounded font-bold bg-gray-300 hover:bg-green-300">Add User</button>
+  </section>
+</section>
+<aside class="modal-container flex justify-center items-center absolute top-0 left-0 w-full h-full bg-black/25 hidden">
+  <article class="modal flex flex-col  bg-white rounded overflow-hidden">
+    <section class="modal-header py-2 px-4 bg-green-300">
+      <h2 class="font-bold text-lg">Add a user to this trip</h2>
+    </section>
+    <form action="POST" id="add-user-form" class="flex flex-col justify-between py-2 px-4">
+      <label for="user-entry" class="font-bold">username</label>
+      <input type="text" id="user-entry" class="border-2 border-gray-500 rounded mt-1">
+      <button class="add-btn py-1 px-2 rounded font-bold bg-gray-300 hover:bg-green-300 mt-4 mb-2">Add User</button>
+    </form>
+  </article>
+</aside>
+<script src="/javascripts/trip.js"></script>
