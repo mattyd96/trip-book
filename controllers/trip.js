@@ -1,4 +1,4 @@
-const {Trip, Item, User} = require('../models');
+const {Trip, Item, User, UserTrip} = require('../models');
 const { Op } = require('sequelize');
 
 // helper function to sort items in kanban
@@ -207,6 +207,36 @@ module.exports = {
       res.status(200).end();
     } catch (err) {
       res.status(500).end();
+    }
+  },
+
+
+  //--------------------------------- Trip User Controllers ------------------------------------//
+
+  // add user to trip
+  addUser: async (req, res) => {
+    try {
+      const [user] = await User.findAll({where: {username: req.body.user}});
+      const exists = await UserTrip.findAll({where: {user_id: user.id, trip_id: req.params.id}});
+
+      if(exists.length !== 0) {
+        res.status(200).end();
+        return;
+      }
+
+      await UserTrip.create({user_id: user.id, trip_id: req.params.id});
+
+      res.status(200).end();
+
+    } catch (err) { 
+      res.status(500).json(err)
+    }
+  },
+
+  //remove user from trip
+  removeUser: async (req, res) => {
+    try {} catch (err) { 
+      res.status(500).json(err)
     }
   },
 

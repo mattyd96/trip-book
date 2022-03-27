@@ -1,5 +1,6 @@
 const deleteBtn = document.querySelector('.delete-btn');
 const addBtn = document.querySelector('.add-btn');
+const addSubmitBtn = document.querySelector('.add-submit-btn');
 const modalContainer = document.querySelector('.modal-container');
 const modal = document.querySelector('.modal');
 
@@ -8,7 +9,7 @@ const removeUser = event => {
 
   const user = event.target.id;
 
-  const url = location.pathname + 'remove';
+  const url = location.pathname + '/remove';
 
   fetch(url, {
     method: 'DELETE',
@@ -38,6 +39,31 @@ const preventBubble = event => {
   event.stopPropagation();
 }
 
+const addUser = event => {
+  event.preventDefault();
+  const errDiv = document.querySelector('.error-msg');
+  const url = location.pathname + '/add';
+  const user = document.querySelector('#user-entry');
+
+  fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({user: user.value})
+  })
+  .then(response => {
+    if (response.ok) {
+      user.value = '';
+      errDiv.classList.add('hidden');
+      location.reload();
+    }
+  })
+  .catch(err => {
+    errDiv.classList.remove('hidden');
+    console.log(err);
+  });
+}
+
 addBtn.addEventListener('click', addUserModal);
+addSubmitBtn.addEventListener('click', addUser);
 modal.addEventListener('click', preventBubble);
 modalContainer.addEventListener('click', hideModal);
