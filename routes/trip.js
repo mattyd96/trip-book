@@ -9,15 +9,9 @@ const {
 } = require("../middlewares/auth");
 const { uploadImage } = require("../middlewares/multer");
 
-/* GET all trips and render page */
-router.get("/", userAuth, controller.getAllUserTrips);
-
 //-------------------------- Trip routes -------------------//
 // GET a single trip
 router.get("/:id", controller.getTrip);
-
-// POST add a trip
-router.post("/add", controller.addTrip);
 
 // DELETE a trip
 router.delete("/delete", controller.deleteTrip);
