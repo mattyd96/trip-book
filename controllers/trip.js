@@ -33,11 +33,15 @@ module.exports = {
   // add a trip
   addTrip: async (req,res) => {
     try {
-      //create trip
-      await Trip.create({
+      // create trip
+      const trip = await Trip.create({
         creator_id: req.session.user_id,
         name: req.body.name
       });
+
+      // add to userTrip table
+      await UserTrip.create({user_id: req.session.user_id, trip_id: trip.id});
+      
       // respond
       res.status(200).end();
 
