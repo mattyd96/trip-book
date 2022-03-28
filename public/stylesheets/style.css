@@ -530,8 +530,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 100%;
 }
 
+.w-10\/12 {
+  width: 83.333333%;
+}
+
 .max-w-xs {
   max-width: 20rem;
+}
+
+.max-w-lg {
+  max-width: 32rem;
+}
+
+.max-w-3xl {
+  max-width: 48rem;
 }
 
 .flex-shrink-0 {
@@ -758,6 +770,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 @media (min-width: 768px) {
+
+  .md\:w-auto {
+    width: auto;
+  }
+
+  .md\:w-full {
+    width: 100%;
+  }
+
+  .md\:w-10\/12 {
+    width: 83.333333%;
+  }
 
   .md\:grow {
     flex-grow: 1;
