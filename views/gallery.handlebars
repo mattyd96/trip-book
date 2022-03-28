@@ -1,17 +1,18 @@
 <section class="heading flex justify-between items-center">
   <h1>Pictures</h1>
-  <button class="">Add picture</button>
+  <button class="add-btn py-1 px-2 rounded font-bold bg-gray-300 hover:bg-green-300">Add picture</button>
 </section>
 <section class="images">
   {{#each pictures}}
   {{> image-card}}
   {{/each}}
 </section>
-<section class="modal-container">
-  <section class="modal">
+<section class="modal-container modal-container flex justify-center items-center absolute top-0 left-0 w-full h-full bg-black/25 hidden">
+  <section class="modal flex flex-col p-4 bg-[#CBECFF] rounded">
     <section id="image-upload" class="">
 
     </section>
+    <button class="close-btn py-1 px-2 rounded font-bold bg-gray-300 hover:bg-red-500 mt-4">Close</button>
   </section>
 </section>
 

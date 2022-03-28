@@ -262,7 +262,6 @@ module.exports = {
     const trip = req.params.id;
     const filename = req.file.filename;
     const link = `public/images/${filename}`;
-    console.log(req.file);
 
     try {
       await Picture.create({user_id: user, trip_id: trip, name: filename, link: link});
