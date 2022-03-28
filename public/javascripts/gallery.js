@@ -18,6 +18,10 @@ uppy.use(Uppy.XHRUpload, {
   formData: true,
 });
 
+uppy.on('complete', res => {
+  location.reload();
+});
+
 // show modal
 const showModal = event => {
   event.preventDefault();
