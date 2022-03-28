@@ -218,20 +218,24 @@ module.exports = {
   // add user to trip
   addUser: async (req, res) => {
     try {
+      // see if connection of user and trip already exists
       const [user] = await User.findAll({where: {username: req.body.user}});
       const exists = await UserTrip.findAll({where: {user_id: user.id, trip_id: req.params.id}});
 
+      // if so just return a success
       if(exists.length !== 0) {
         res.status(200).end();
         return;
       }
 
+      // otherwise create the connection (user -> trip)
       await UserTrip.create({user_id: user.id, trip_id: req.params.id});
 
+      // respond
       res.status(200).end();
 
     } catch (err) { 
-      res.status(500).json(err)
+      res.status(500).json(err);
     }
   },
 
@@ -247,32 +251,41 @@ module.exports = {
 
 
   //--------------------------------- Gallery controllers --------------------------------------//
+  // render gallery with all pictures in trip
   getGallery: async (req,res) => {
     try {
+      // get pictures
       let pictures = await Picture.findAll({where: {trip_id: req.params.id}});
 
       // reduce results
       pictures = pictures.map((picture) => picture.get({ plain: true }));
 
+      // render
       res.render('gallery', {pictures, logged_in: req.session.logged_in});
     } catch (err) {
       res.status(500).json(err);
     }
     
   },
+
+  // add an image
   addImage: async (req,res) => {
+    // get info
     const user = req.session.user_id;
     const trip = req.params.id;
     const filename = req.file.filename;
     const link = `/images/${filename}`;
 
     try {
+      // create picture entry in database
       await Picture.create({user_id: user, trip_id: trip, name: filename, link: link});
-
+      //respond
       res.status(200).end();
     } catch (err) {
       res.status(500).json(err);
     }
   },
+
+  // delete an image
   deleteImage: (req,res) => {},
 }

@@ -1,17 +1,19 @@
+// DOM elements
 const deleteBtn = document.querySelectorAll('.delete-btn');
 const addBtn = document.querySelector('.add-btn');
 const addSubmitBtn = document.querySelector('.add-submit-btn');
 const modalContainer = document.querySelector('.modal-container');
 const modal = document.querySelector('.modal');
 
+// Links to kanban and gallery
 const kanbanLink = document.querySelector('.kanban-link');
 const galleryLink = document.querySelector('.gallery-link');
 
+// remove a user from trip
 const removeUser = event => {
   event.preventDefault();
 
   const user = event.target.id;
-
   const url = location.pathname + '/remove';
 
   fetch(url, {
@@ -29,19 +31,7 @@ const removeUser = event => {
   });
 }
 
-const addUserModal = () => {
-  modalContainer.classList.remove('hidden');
-}
-
-const hideModal = event => {
-  event.preventDefault();
-  modalContainer.classList.add('hidden');
-}
-
-const preventBubble = event => {
-  event.stopPropagation();
-}
-
+// add user to trip
 const addUser = event => {
   event.preventDefault();
   const errDiv = document.querySelector('.error-msg');
@@ -67,6 +57,7 @@ const addUser = event => {
   });
 }
 
+//------------------------------------ Link functions ---------------------------//
 const gotoKanban = () => {
   location.assign(`${location.pathname}/kanban`);
 }
@@ -75,6 +66,25 @@ const gotoGallery = () => {
   location.assign(`${location.pathname}/gallery`);
 }
 
+//------------------------------------- modal functions -------------------------//
+// show modal
+const addUserModal = () => {
+  modalContainer.classList.remove('hidden');
+}
+
+// hide modal
+const hideModal = event => {
+  event.preventDefault();
+  modalContainer.classList.add('hidden');
+}
+
+// stop click on modal from bubbling to hideModal
+const preventBubble = event => {
+  event.stopPropagation();
+}
+
+
+// event listeners
 addBtn.addEventListener('click', addUserModal);
 addSubmitBtn.addEventListener('click', addUser);
 modal.addEventListener('click', preventBubble);

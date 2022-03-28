@@ -1,3 +1,4 @@
+// toggle nav
 const navToggle = () => {
   const menu = document.querySelector('.menu-items');
   const hamburger = document.querySelector('.hamburger-icon');
@@ -8,6 +9,7 @@ const navToggle = () => {
   close.classList.toggle('mobile-hide');
 };
 
+// logout function
 const logout = async () => {
   // logout
   const response = await fetch('/users/logout', {
