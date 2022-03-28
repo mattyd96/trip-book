@@ -115,6 +115,6 @@ const login = async (event) => {
   }
 };
 
+// event listeners
 if(signupForm) {signupForm.addEventListener("submit", signup);}
 if(loginForm) {loginForm.addEventListener("submit", login);}
-console.log('loaded');

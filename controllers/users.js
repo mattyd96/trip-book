@@ -1,5 +1,6 @@
 const { User } = require('../models');
 
+// helper to create error message for client
 const createErrorMessage = errors => {
   const resError = {
     errorList: []
