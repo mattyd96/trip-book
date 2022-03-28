@@ -1,0 +1,49 @@
+<section class="home-container">
+  <section class="hero-image"></section>
+  <section class="forms-container">
+
+    <!-- signup form -->
+    <form id="signup-form" class="flex">
+      <div class="form-input">
+        <label for="signup-username">Username</label>
+        <input type="username" name="username" id="signup-username">
+        <div id="username-error" class="hidden"></div>
+      </div>
+
+      <div class="form-input">
+        <label for="signup-email">Email</label>
+        <input type="email" name="email" id="signup-email">
+        <div id="email-error" class="hidden"></div>
+      </div>
+
+      <div class="form-input">
+        <label for="signup-password">Password</label>
+        <input type="password" name="password" id="signup-password">
+        <div id="password-error" class="hidden"></div>
+      </div>
+      
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <!-- login form -->
+    <form id="login-form">
+      <div class="form-input">
+          <label for="login-id">Email or Username</label>
+          <input name="id" id="login-id">
+      </div>
+
+      <div class="form-input">
+          <label for="login-password">Password</label>
+          <input type="password" name="password" id="login-password">
+      </div>
+
+      <div id="login-error" class="hidden">Credentials not valid, please check your entry</div>
+      
+      <button type="submit">Login</button>
+    </form>
+    
+  </section>
+</section>
+
+
+<script src="/javascripts/login.js"></script>

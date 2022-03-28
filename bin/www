@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
-/**
- * Module dependencies.
- */
+/* Module dependencies. */
 
 var app = require('../app');
 var debug = require('debug')('group-project-2:server');
 var http = require('http');
 var sequelize = require('../config/connection');
+const session = require('express-session');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 /**
  * Get port from environment and store in Express.
@@ -22,9 +22,20 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
-/**
- * Listen on provided port, on all network interfaces.
- */
+/* Listen on provided port, on all network interfaces.*/
+
+// session
+const sess = {
+  secret: 'Super secret secret',
+  cookie: {},
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize,
+  }),
+};
+
+app.use(session(sess));
 
 sequelize.sync({ force: false }).then(() => {
   server.listen(port);
@@ -91,6 +102,4 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
-
-  //require("../seeds/seed.js")
 }

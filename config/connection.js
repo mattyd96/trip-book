@@ -15,6 +15,7 @@ if(process.env.NODE_ENV) {
       host: 'localhost',
       dialect: 'mysql',
       port: 3306,
+      logging: false
     }
   );
 }

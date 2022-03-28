@@ -1,12 +1,19 @@
-var express = require('express');
-var router = express.Router();
-const models = require('../models');
-const authMiddleware = require("../middlewares/auth")
+const express = require('express');
+const router = express.Router();
 
+// route requires -> require new route files here
+const homeRoutes = require('./home');
+const userRoutes = require('./users');
+const tripRoutes = require('./trip');
+const galleryRoutes = require('./galleries');
+const dashRoutes = require('./dashboard');
 
-/* GET home page. */
-router.get('/', authMiddleware.authorize, function (req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+// use routes -> add in new routes here
+router.use('/galleries', galleryRoutes); // galleries
+router.use('/trips', tripRoutes); // trip pages
+router.use('/dashboard', dashRoutes); //user dashboard
+router.use('/users', userRoutes); // login logout
+router.use('/', homeRoutes); //home page
+
 
 module.exports = router;

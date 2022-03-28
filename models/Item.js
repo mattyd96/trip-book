@@ -11,11 +11,11 @@ Item.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    itinerary_id: {
+    trip_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-          model: 'itinerary',
+          model: 'trip',
           key: 'id'
       }
     },
@@ -37,12 +37,20 @@ Item.init(
     },
     start_time: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
     },
     end_time: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
     },
+    column: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    index: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   },
   {
     sequelize,
