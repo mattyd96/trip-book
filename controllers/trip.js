@@ -249,7 +249,12 @@ module.exports = {
   //--------------------------------- Gallery controllers --------------------------------------//
   getGallery: async (req,res) => {
     try {
-      const pictures = await Picture.findAll({where: {trip_id: req.params.id}});
+      let pictures = await Picture.findAll({where: {trip_id: req.params.id}});
+
+      // reduce results
+      pictures = pictures.map((picture) => picture.get({ plain: true }));
+
+      console.log(pictures);
 
       res.render('gallery', {pictures, logged_in: req.session.logged_in});
     } catch (err) {
@@ -261,7 +266,7 @@ module.exports = {
     const user = req.session.user_id;
     const trip = req.params.id;
     const filename = req.file.filename;
-    const link = `public/images/${filename}`;
+    const link = `/images/${filename}`;
 
     try {
       await Picture.create({user_id: user, trip_id: trip, name: filename, link: link});
