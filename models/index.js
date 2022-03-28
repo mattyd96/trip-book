@@ -41,4 +41,7 @@ Picture.hasMany(PicNote, {foreignKey: 'trip_id'});
 //Itinerary has many items
 Trip.hasMany(Item, {foreignKey: 'trip_id', onDelete: 'CASCADE'});
 
+// Item has a creator (user)
+Item.belongsTo(User, {foreignKey: 'user_id'});
+
 module.exports = { User, Picture, Trip, Itinerary, Item, UserTrip };

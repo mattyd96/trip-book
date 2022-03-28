@@ -1,35 +1,39 @@
 <!-- kanban container -->
-<section class="kanban">
+<section class="kanban flex flex-wrap gap-4 h-full">
 
   <!-- first column : ideas -->
   <div class="column c1">
     <section class="column-head">
       <h2>Ideas</h2>
-      <button class="add-item">Add</button>
+      <button class="add-item py-1 px-4 font-medium rounded bg-gray-300 hover:bg-green-300">Add</button>
     </section>   
     <section class="items">
-      {{#each c1ItemList}}
-      {{> kanaban-card}}
+      {{#each c1ItemsList}}
+      {{> kanban-card}}
       {{/each}}
     </section>
   </div>
 
   <!-- second column : planned -->
   <div class="column c2">
-    <h2>Planned</h2>
+    <section class="column-head">
+      <h2>Planned</h2>
+    </section>
     <section class="items">
-      {{#each c2ItemList}}
-      {{> kanaban-card}}
+      {{#each c2ItemsList}}
+      {{> kanban-card}}
       {{/each}}
     </section>
   </div>
 
   <!-- third column : finished -->
   <div class="column c3">
-    <h2>Finished</h2>
+    <section class="column-head">
+      <h2>Finished</h2>
+    </section>
     <section class="items">
-      {{#each c3ItemList}}
-      {{> kanaban-card}}
+      {{#each c3ItemsList}}
+      {{> kanban-card}}
       {{/each}}
     </section>
   </div>
@@ -37,16 +41,19 @@
 
 <!-- add item modal -->
 <aside class="modal-container hidden">
-  <article class="modal">
-    <section class="modal-heading">
-      <h2>Add a new item</h2>
+  <article class="modal overflow-hidden">
+    <section class="modal-heading py-3 px-4">
+      <h2 class="text-lg font-bold">Add a new item</h2>
     </section>
     <section class="modal-content">
-      <form action="POST">
-        <textarea name="content" id="content" cols="30" rows="10"></textarea>
-        <section class="action-btns">
-          <button type="button" class="cancel-btn">Cancel</button>
-          <button class="add-btn">Add</button>
+      <form action="POST" id="add-item-form" class="flex flex-col">
+        <label for="title" class="font-medium">Title</label>
+        <input type="text" name="title" id="title" class="border-2 rounded">
+        <label for="content" class="font-medium">Content</label>
+        <textarea name="content" id="content" rows="10" class="border-2 rounded"></textarea>
+        <section class="action-btns pt-3">
+          <button type="button" class="cancel-btn py-1 px-2 font-medium rounded bg-gray-300 hover:bg-red-500">Cancel</button>
+          <button class="add-btn font-medium rounded bg-gray-300 hover:bg-green-300">Add</button>
         </section>
       </form>
     </section>
@@ -54,4 +61,5 @@
 </aside>
 
 <script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.12/lib/draggable.bundle.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.12/lib/plugins/swap-animation.js"></script>
 <script src="/javascripts/kanban.js"></script>

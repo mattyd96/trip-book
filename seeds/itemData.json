@@ -19,15 +19,15 @@
     "trip_id": 1,
     "user_id": 3,
     "title": "Go snowboarding",
-    "info": "up a big mountain",
+    "info": "Down a big mountain",
     "column": 1,
     "index": 2
   },
   {
     "trip_id": 1,
-    "user_id": 1,
+    "user_id": 4,
     "title": "Go on a bike ride",
-    "info": "up a big mountain",
+    "info": "up and down a big mountain",
     "column": 1,
     "index": 3
   },
@@ -41,7 +41,7 @@
   },
   {
     "trip_id": 2,
-    "user_id": 2,
+    "user_id": 3,
     "title": "Go on a walk",
     "info": "up a small mountain",
     "column": 1,
@@ -81,7 +81,7 @@
   },
   {
     "trip_id": 3,
-    "user_id": 3,
+    "user_id": 4,
     "title": "Go snowboarding",
     "info": "up a big mountain",
     "column": 1,
@@ -89,7 +89,7 @@
   },
   {
     "trip_id": 3,
-    "user_id": 1,
+    "user_id": 4,
     "title": "Go on a bike ride",
     "info": "up a big mountain",
     "column": 1,

@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/trip');
-const { userAuth, userAuthFetch } = require("../middlewares/auth");
+const { userAuth, userAuthFetch, tripAuth, tripAuthFetch } = require("../middlewares/auth");
+const { uploadImage } = require('../middlewares/multer');
 
 /* GET all trips and render page */
 router.get('/', function(req, res, next) {
@@ -17,30 +18,36 @@ router.get('/:id', controller.getTrip);
 router.post('/add', controller.addTrip);
 
 // DELETE a trip
-router.delete('/:id/delete', controller.deleteTrip);
+router.delete('/delete', controller.deleteTrip);
+
+//----------------------- Trip User routes -----------------//
+
+router.post('/:id/add', userAuth, tripAuth, controller.addUser);
+
+router.delete('/:id/remove', userAuth, tripAuth, controller.removeUser);
 
 //------------------------- kanban routes ------------------//
 // GET Kanban of trip
-router.get('/:id/kanban', controller.getKanban);
+router.get('/:id/kanban', userAuth, tripAuth, controller.getKanban);
 
 // POST add item to kanban
-router.post('/:id/kanban/add', controller.addKanbanItem);
+router.post('/:id/kanban/add', userAuthFetch, tripAuthFetch, controller.addKanbanItem);
 
 // DELETE delete item from kanban
-router.delete('/:id/kanban/delete', controller.deleteKanbanItem);
+router.delete('/:id/kanban/delete', userAuthFetch, tripAuthFetch, controller.deleteKanbanItem);
 
 // PUT reorder items in kanban 
-router.put('/:id/kanban/reorder', controller.reorderKanbanItem);
+router.put('/:id/kanban/reorder', userAuthFetch, tripAuthFetch, controller.reorderKanbanItem);
 
 //------------------------ Gallery routes ------------------//
 // GET Gallery of trip
-router.get('/:id/gallery', controller.getGallery);
+router.get('/:id/gallery', userAuth, tripAuth, controller.getGallery);
 
 // POST add picture to gallery
-router.post('/:id/gallery/add', controller.addImage);
+router.post('/:id/gallery', userAuth, tripAuth, uploadImage, controller.addImage);
 
 // DELETE delete picture from gallery
-router.delete(':id/gallery/delete', controller.deleteImage);
+router.delete(':id/gallery', userAuth, tripAuth, controller.deleteImage);
 
 
 

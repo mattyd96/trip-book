@@ -1,10 +1,13 @@
-<article class="item" id="{{id}}">
-  <section class="heading">
-    <p id="{{user_id}}">{{user_id}}</p>
-    <button class="delete-btn" value="{{id}}">Delete</button>
+<article class="item flex flex-col flex-shrink-0 rounded bg-white shadow-lg overflow-hidden hover:cursor-pointer" id="{{id}}">
+  <section class="heading py-2 px-4">
+    <p class="text-xl font-medium">{{title}}</p>
   </section>
-  <section class="content">
-    <p class="desc">{{content}}</p>
+  <section class="content py-2 px-4">
+    <p class="desc">{{info}}</p>
+  </section>
+  <section class="footer flex justify-between items-center py-2 px-4">
+    <p id="{{user_id}}" class="font-medium">{{user.username}}</p>
+    <button class="delete-btn py-1 px-2 font-medium rounded bg-gray-300 hover:bg-red-500" value="{{id}}">Delete</button>
   </section>
 </article>
       
