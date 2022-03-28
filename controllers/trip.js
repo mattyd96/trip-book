@@ -287,5 +287,12 @@ module.exports = {
   },
 
   // delete an image
-  deleteImage: (req,res) => {},
+  deleteImage: async (req,res) => {
+    try {
+      await Picture.destroy({where: { id: req.body.id }});
+      res.status(200).end();
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
 }
