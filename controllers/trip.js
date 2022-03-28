@@ -1,5 +1,6 @@
 const {Trip, Item, User, UserTrip} = require('../models');
 const { Op } = require('sequelize');
+const path = require('path');
 
 // helper function to sort items in kanban
 const itemSort = (a, b) => {
@@ -245,7 +246,12 @@ module.exports = {
 
 
   //--------------------------------- Gallery controllers --------------------------------------//
-  getGallery: (req,res) => {},
-  addImage: (req,res) => {},
+  getGallery: (req,res) => {
+    res.render('gallery', {logged_in: req.session.logged_in});
+  },
+  addImage: (req,res) => {
+    console.log(req.file);
+    if(req.file) return res.json({msg: 'uploaded!'});
+  },
   deleteImage: (req,res) => {},
 }

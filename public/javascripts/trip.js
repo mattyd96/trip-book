@@ -58,10 +58,11 @@ const addUser = event => {
       user.value = '';
       errDiv.classList.add('hidden');
       location.reload();
+    } else {
+      errDiv.classList.remove('hidden');
     }
   })
   .catch(err => {
-    errDiv.classList.remove('hidden');
     console.log(err);
   });
 }
@@ -80,7 +81,7 @@ modal.addEventListener('click', preventBubble);
 modalContainer.addEventListener('click', hideModal);
 
 kanbanLink.addEventListener('click', gotoKanban);
-galleryLink.addEventListener('click', gotogallery);
+galleryLink.addEventListener('click', gotoGallery);
 
 if(deleteBtn) {
   deleteBtn.forEach(btn => {

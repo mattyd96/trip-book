@@ -1,12 +1,13 @@
+<h1 class="text-2xl font-bold mb-4">{{trip_info.name}}</h1>
 <section class="trips-menu flex flex-wrap gap-4">
   <section class="kanban-link h-44 basis-full md:basis-0 md:grow flex justify-center items-center bg-[#8BF1F1] rounded hover:cursor-pointer">
     <h2 class="text-3xl font-bold">Trip Kanban</h2>
   </section>
-  <section class="Gallery-link h-44 basis-full md:basis-0 md:grow flex justify-center items-center bg-[#FFCFCF] rounded hover:cursor-pointer">
+  <section class="gallery-link h-44 basis-full md:basis-0 md:grow flex justify-center items-center bg-[#FFCFCF] rounded hover:cursor-pointer">
     <h2 class="text-3xl font-bold">Pictures!</h2>
   </section>
   <section class="users flex flex-col gap-4 w-full">
-    <h2 class="font-bold text-3xl">Users</h2>
+    <h2 class="font-bold text-2xl">Users</h2>
 
     {{#each trip_info.users}}
     {{> user-card creator='creator'}}

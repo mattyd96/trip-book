@@ -1,0 +1,19 @@
+<section class="heading flex justify-between items-center">
+  <h1>Pictures</h1>
+  <button class="">Add picture</button>
+</section>
+<section class="images">
+  {{#each image}}
+  {{> image-card}}
+  {{/each}}
+</section>
+<section class="modal-container">
+  <section class="modal">
+    <section id="image-upload" class="">
+
+    </section>
+  </section>
+</section>
+
+<script src="https://releases.transloadit.com/uppy/v2.8.0/uppy.min.js"></script>
+<script src="/javascripts/gallery.js"></script>
