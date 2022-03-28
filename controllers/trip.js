@@ -1,5 +1,7 @@
-const {Trip, Item, User, UserTrip} = require('../models');
+const {Trip, Item, User, UserTrip, Picture} = require('../models');
 const { Op } = require('sequelize');
+const path = require('path');
+const { findAll } = require('../models/User');
 
 // helper function to sort items in kanban
 const itemSort = (a, b) => {
@@ -245,7 +247,32 @@ module.exports = {
 
 
   //--------------------------------- Gallery controllers --------------------------------------//
-  getGallery: (req,res) => {},
-  addImage: (req,res) => {},
+  getGallery: async (req,res) => {
+    try {
+      let pictures = await Picture.findAll({where: {trip_id: req.params.id}});
+
+      // reduce results
+      pictures = pictures.map((picture) => picture.get({ plain: true }));
+
+      res.render('gallery', {pictures, logged_in: req.session.logged_in});
+    } catch (err) {
+      res.status(500).json(err);
+    }
+    
+  },
+  addImage: async (req,res) => {
+    const user = req.session.user_id;
+    const trip = req.params.id;
+    const filename = req.file.filename;
+    const link = `/images/${filename}`;
+
+    try {
+      await Picture.create({user_id: user, trip_id: trip, name: filename, link: link});
+
+      res.status(200).end();
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
   deleteImage: (req,res) => {},
 }

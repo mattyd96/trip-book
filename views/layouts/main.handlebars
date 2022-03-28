@@ -6,11 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://releases.transloadit.com/uppy/v2.8.0/uppy.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/main.css">
     <link rel="stylesheet" href="/stylesheets/nav.css">
+    {{#if style}}
     <link rel="stylesheet" href="/stylesheets/{{style}}.css">
+    {{/if}}
 </head>
-<body>
+<body class="px-4 md:px-8">
   <nav>
   <div id="logo">
     <a href="/">TripBook</a>

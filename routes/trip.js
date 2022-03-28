@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/trip');
 const { userAuth, userAuthFetch, tripAuth, tripAuthFetch } = require("../middlewares/auth");
+const { uploadImage } = require('../middlewares/multer');
 
 /* GET all trips and render page */
 router.get('/', function(req, res, next) {
@@ -40,13 +41,13 @@ router.put('/:id/kanban/reorder', userAuthFetch, tripAuthFetch, controller.reord
 
 //------------------------ Gallery routes ------------------//
 // GET Gallery of trip
-router.get('/:id/gallery', controller.getGallery);
+router.get('/:id/gallery', userAuth, tripAuth, controller.getGallery);
 
 // POST add picture to gallery
-router.post('/:id/gallery/add', controller.addImage);
+router.post('/:id/gallery', userAuth, tripAuth, uploadImage, controller.addImage);
 
 // DELETE delete picture from gallery
-router.delete(':id/gallery/delete', controller.deleteImage);
+router.delete(':id/gallery', userAuth, tripAuth, controller.deleteImage);
 
 
 
