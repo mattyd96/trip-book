@@ -1,21 +1,24 @@
-const { Trip, User } = require("../models");
+const { Trip, User, UserTrip } = require("../models");
 
 module.exports = {
   getDash: async (req, res) => {
     try {
       // get all user trip
-      let trips = await Trip.findAll({
-        where: { creator_id: req.session.user_id },
-        include: [{ model: User, attributes: ["username", "id"] }],
+
+      let user = await User.findAll({
+        where: { id: req.session.user_id },
+        include: [{ model: Trip }],
       });
 
       // reduce results
-      trips = trips.map((t) => t.get({ plain: true }));
+      const trips = user.map((t) => t.get({ plain: true }));
 
       // render trip page -> for now it doesn't exist, uncomment when made
       res.json(trips);
       //res.render('trips', {trip_info: trips, logged_in: req.session.logged_in});
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   },
   // add a trip
   addTrip: async (req, res) => {
