@@ -1,22 +1,21 @@
-const {Trip, Item, User, UserTrip, Picture} = require('../models');
-const { Op } = require('sequelize');
-const path = require('path');
-const { findAll } = require('../models/User');
+const { Trip, Item, User, UserTrip, Picture } = require("../models");
+const { Op } = require("sequelize");
+const path = require("path");
+const { findAll } = require("../models/User");
 
 // helper function to sort items in kanban
 const itemSort = (a, b) => {
   return a.index - b.index;
-}
+};
 
 module.exports = {
   // get Trip and render trip page
-  getTrip: async (req,res) => {
-    
-    try{
+  getTrip: async (req, res) => {
+    try {
       // get trip with id
       let trip = await Trip.findAll({
-        where: {id: req.params.id},
-        include: [{ model: User, attributes: ['username', 'id']}]
+        where: { id: req.params.id },
+        include: [{ model: User, attributes: ["username", "id"] }],
       });
 
       // reduce results
@@ -48,27 +47,26 @@ module.exports = {
     } catch (err) {
       res.status(500).json(err);
     }
-    
   },
 
   // delete a trip
-  deleteTrip: async (req,res) => {
+  deleteTrip: async (req, res) => {
     try {
-      await Trip.destroy({where: {id: req.body.id}});
+      await Trip.destroy({ where: { id: req.body.id } });
 
       res.status(200).end();
     } catch (err) {
       res.status(500).json(err);
-    }  
+    }
   },
 
   // render kanban with items
-  getKanban: async (req,res) => {
+  getKanban: async (req, res) => {
     try {
       // get all items
       let items = await Item.findAll({
-        where: {trip_id: req.params.id},
-        include: [{ model: User, attributes: ['username']}]
+        where: { trip_id: req.params.id },
+        include: [{ model: User, attributes: ["username"] }],
       });
 
       // reduce results
@@ -80,10 +78,12 @@ module.exports = {
       const c3ItemsList = [];
 
       // push each item into appropriate column
-      items.forEach(item => {
-        item.column == 1 ? c1ItemsList.push(item) :
-        item.column == 2 ? c2ItemsList.push(item) :
-        c3ItemsList.push(item);
+      items.forEach((item) => {
+        item.column == 1
+          ? c1ItemsList.push(item)
+          : item.column == 2
+          ? c2ItemsList.push(item)
+          : c3ItemsList.push(item);
       });
 
       // sort by index in kanban (item.index)
@@ -100,12 +100,11 @@ module.exports = {
         logged_in: req.session.logged_in,
         currentUser: req.session.user_id,
       });
-
     } catch (err) {}
   },
 
   // add an item to the kanban
-  addKanbanItem: async (req,res) => {
+  addKanbanItem: async (req, res) => {
     try {
       // create item
       await Item.create({
@@ -114,33 +113,34 @@ module.exports = {
         info: req.body.content,
         title: req.body.title,
         column: 1,
-        index: req.body.index
+        index: req.body.index,
       });
       //respond
       res.status(200).end();
     } catch (err) {
       res.status(500).end();
     }
-    
   },
 
   // delete and item from the kanban
-  deleteKanbanItem: async (req,res) => {
+  deleteKanbanItem: async (req, res) => {
     try {
       //find item and get info
-      const [item] = await Item.findAll({where: {id: req.body.target}});
+      const [item] = await Item.findAll({ where: { id: req.body.target } });
       const { column, index } = item;
 
       // delete item
-      await Item.destroy({where: {id: req.body.target}});
+      await Item.destroy({ where: { id: req.body.target } });
 
       // reorder remaining items in column
-      const items = await Item.findAll({where: {column: column, trip_id: req.params.id }});
+      const items = await Item.findAll({
+        where: { column: column, trip_id: req.params.id },
+      });
 
       // decrease the index of all items with a higher index than the deleted one
-      items.forEach(item => {
+      items.forEach((item) => {
         if (item.index > index) {
-          Item.update({index: item.index - 1}, {where: {id: item.id}});
+          Item.update({ index: item.index - 1 }, { where: { id: item.id } });
         }
       });
 
@@ -152,59 +152,57 @@ module.exports = {
   },
 
   // reorder kanban items -> activated when dragged on client side
-  reorderKanbanItem: async (req,res) => {
+  reorderKanbanItem: async (req, res) => {
     // get items from request body -> convert column classes into numbers for database
-    let {itemId, newIndex, oldIndex, oldC, newC, currentTrip} = req.body;
-    oldC = parseInt(oldC.split('')[1]);
-    newC = parseInt(newC.split('')[1]);
-  
+    let { itemId, newIndex, oldIndex, oldC, newC, currentTrip } = req.body;
+    oldC = parseInt(oldC.split("")[1]);
+    newC = parseInt(newC.split("")[1]);
+
     try {
       // update moved item
       await Item.update(
         { index: newIndex, column: newC },
-        { where: {id: itemId} }
+        { where: { id: itemId } }
       );
 
-      const oldColumnItems = await Item.findAll({where: { trip_id: currentTrip, column: oldC, id: {[Op.not]: itemId} }});
-      const newColumnItems = await Item.findAll({where: { trip_id: currentTrip, column: newC, id: {[Op.not]: itemId} }});
+      const oldColumnItems = await Item.findAll({
+        where: { trip_id: currentTrip, column: oldC, id: { [Op.not]: itemId } },
+      });
+      const newColumnItems = await Item.findAll({
+        where: { trip_id: currentTrip, column: newC, id: { [Op.not]: itemId } },
+      });
 
-      if(oldC === newC) {
+      if (oldC === newC) {
         //update same column of moved item
-        oldColumnItems.forEach(item => {
-          if(newIndex < oldIndex) {
-            if(item.index >= newIndex && item.index < oldIndex) {
+        oldColumnItems.forEach((item) => {
+          if (newIndex < oldIndex) {
+            if (item.index >= newIndex && item.index < oldIndex) {
               Item.update(
-                { index: item.index + 1},
-                { where: {id: item.id} }
+                { index: item.index + 1 },
+                { where: { id: item.id } }
               );
             }
           } else if (newIndex > oldIndex) {
-            if(item.index <= newIndex && item.index >= oldIndex) {
+            if (item.index <= newIndex && item.index >= oldIndex) {
               Item.update(
-                { index: item.index - 1},
-                { where: {id: item.id} }
+                { index: item.index - 1 },
+                { where: { id: item.id } }
               );
             }
           }
         });
       } else {
         //update old column of moved item
-        oldColumnItems.forEach(item => {
-          if(item.index > oldIndex) {
-            Item.update(
-              { index: item.index - 1},
-              { where: {id: item.id} }
-            );
+        oldColumnItems.forEach((item) => {
+          if (item.index > oldIndex) {
+            Item.update({ index: item.index - 1 }, { where: { id: item.id } });
           }
         });
 
         //update new column of moved item
-        newColumnItems.forEach(item => {
-          if(item.index >= newIndex) {
-            Item.update(
-              { index: item.index + 1},
-              { where: {id: item.id} }
-            );
+        newColumnItems.forEach((item) => {
+          if (item.index >= newIndex) {
+            Item.update({ index: item.index + 1 }, { where: { id: item.id } });
           }
         });
       }
@@ -215,7 +213,6 @@ module.exports = {
       res.status(500).end();
     }
   },
-
 
   //--------------------------------- Trip User Controllers ------------------------------------//
 
@@ -231,7 +228,6 @@ module.exports = {
         res.status(200).end();
         return;
       }
-
       // otherwise create the connection (user -> trip)
       await UserTrip.create({user_id: user.id, trip_id: req.params.id});
 
@@ -246,15 +242,17 @@ module.exports = {
   //remove user from trip
   removeUser: async (req, res) => {
     try {
-      await UserTrip.destroy({where: {user_id: req.body.user, trip_id: req.params.id}});
+      await UserTrip.destroy({
+        where: { user_id: req.body.user, trip_id: req.params.id },
+      });
       res.status(200).end();
-    } catch (err) { 
-      res.status(500).json(err)
+    } catch (err) {
+      res.status(500).json(err);
     }
   },
 
-
   //--------------------------------- Gallery controllers --------------------------------------//
+
   // render gallery with all pictures in trip
   getGallery: async (req,res) => {
     try {
@@ -266,10 +264,10 @@ module.exports = {
 
       // render
       res.render('gallery', {pictures, logged_in: req.session.logged_in});
+
     } catch (err) {
       res.status(500).json(err);
     }
-    
   },
 
   // add an image
