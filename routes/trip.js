@@ -41,13 +41,13 @@ router.put('/:id/kanban/reorder', userAuthFetch, tripAuthFetch, controller.reord
 
 //------------------------ Gallery routes ------------------//
 // GET Gallery of trip
-router.get('/:id/gallery', controller.getGallery);
+router.get('/:id/gallery', userAuth, tripAuth, controller.getGallery);
 
 // POST add picture to gallery
-router.post('/:id/gallery', uploadImage, controller.addImage);
+router.post('/:id/gallery', userAuth, tripAuth, uploadImage, controller.addImage);
 
 // DELETE delete picture from gallery
-router.delete(':id/gallery', controller.deleteImage);
+router.delete(':id/gallery', userAuth, tripAuth, controller.deleteImage);
 
 
 
