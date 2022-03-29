@@ -2,7 +2,7 @@
   <h1 class="text-2xl font-bold">Pictures</h1>
   <button class="add-btn py-1 px-2 rounded font-bold bg-gray-300 hover:bg-green-300">Add picture</button>
 </section>
-<section class="images flex gap-4 flex-wrap">
+<section class="masonry sm:masonry-sm md:masonry-md">
   {{#each pictures}}
   {{> image-card}}
   {{/each}}
