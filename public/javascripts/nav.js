@@ -2,9 +2,11 @@
 const menuBtn = document.querySelector("#mobile-menu-btn");
 const mobileMenu = document.querySelector("#mobile-menu");
 
-menuBtn.addEventListener("click", () => {
+const menuToggle = (e) => {
   mobileMenu.classList.toggle("hidden");
-});
+};
+
+menuBtn.addEventListener("click", menuToggle);
 
 // logout function
 const logout = async () => {
