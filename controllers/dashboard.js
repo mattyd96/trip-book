@@ -1,4 +1,4 @@
-const { Trip, User, UserTrip } = require("../models");
+const { Trip, User } = require("../models");
 
 module.exports = {
   getDash: async (req, res) => {
