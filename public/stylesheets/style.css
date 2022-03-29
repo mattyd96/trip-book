@@ -500,6 +500,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 0px;
 }
 
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
 .block {
   display: block;
 }
@@ -650,14 +654,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(224 231 255 / var(--tw-bg-opacity));
 }
 
-.bg-indigo-600 {
+.bg-primary {
   --tw-bg-opacity: 1;
-  background-color: rgb(79 70 229 / var(--tw-bg-opacity));
-}
-
-.bg-secondary {
-  --tw-bg-opacity: 1;
-  background-color: rgb(216 226 220 / var(--tw-bg-opacity));
+  background-color: rgb(254 200 154 / var(--tw-bg-opacity));
 }
 
 .bg-\[\#8BF1F1\] {
@@ -680,14 +679,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(254 249 195 / var(--tw-bg-opacity));
 }
 
+.bg-secondary {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 197 187 / var(--tw-bg-opacity));
+}
+
 .bg-\[\#E2CBFF\] {
   --tw-bg-opacity: 1;
   background-color: rgb(226 203 255 / var(--tw-bg-opacity));
-}
-
-.bg-primary {
-  --tw-bg-opacity: 1;
-  background-color: rgb(254 200 154 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-100 {
@@ -793,24 +792,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(55 65 81 / var(--tw-text-opacity));
 }
 
-.text-white {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
 .text-gray-800 {
   --tw-text-opacity: 1;
   color: rgb(31 41 55 / var(--tw-text-opacity));
-}
-
-.text-secondary {
-  --tw-text-opacity: 1;
-  color: rgb(216 226 220 / var(--tw-text-opacity));
-}
-
-.text-primary {
-  --tw-text-opacity: 1;
-  color: rgb(254 200 154 / var(--tw-text-opacity));
 }
 
 .placeholder-gray-400::-moz-placeholder {
@@ -864,14 +848,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(239 68 68 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-indigo-700:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(67 56 202 / var(--tw-bg-opacity));
-}
-
 .hover\:bg-secondary:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(216 226 220 / var(--tw-bg-opacity));
+  background-color: rgb(254 197 187 / var(--tw-bg-opacity));
 }
 
 .hover\:text-gray-700:hover {
@@ -879,14 +858,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(55 65 81 / var(--tw-text-opacity));
 }
 
-.focus\:border-indigo-500:focus {
-  --tw-border-opacity: 1;
-  border-color: rgb(99 102 241 / var(--tw-border-opacity));
-}
-
 .focus\:border-secondary:focus {
   --tw-border-opacity: 1;
-  border-color: rgb(216 226 220 / var(--tw-border-opacity));
+  border-color: rgb(254 197 187 / var(--tw-border-opacity));
 }
 
 .focus\:outline-none:focus {
@@ -900,19 +874,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
 
-.focus\:ring-indigo-500:focus {
+.focus\:ring-secondary:focus {
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(99 102 241 / var(--tw-ring-opacity));
+  --tw-ring-color: rgb(254 197 187 / var(--tw-ring-opacity));
 }
 
 .focus\:ring-tertiary:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(254 197 187 / var(--tw-ring-opacity));
-}
-
-.focus\:ring-secondary:focus {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(216 226 220 / var(--tw-ring-opacity));
 }
 
 .focus\:ring-offset-2:focus {
