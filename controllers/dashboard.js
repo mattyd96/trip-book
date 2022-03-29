@@ -1,4 +1,4 @@
-const { Trip, User } = require("../models");
+const { Trip, User, UserTrip } = require("../models");
 
 module.exports = {
   getDash: async (req, res) => {
@@ -26,10 +26,11 @@ module.exports = {
   addTrip: async (req, res) => {
     try {
       //create trip
-      await Trip.create({
+      const trip = await Trip.create({
         creator_id: req.session.user_id,
         name: req.body.name,
       });
+      await UserTrip.create({ user_id: req.session.user_id, trip_id: trip.id });
       // respond
       res.status(200).end();
     } catch (err) {
