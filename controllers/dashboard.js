@@ -12,10 +12,12 @@ module.exports = {
 
       // reduce results
       const trips = user.map((t) => t.get({ plain: true }));
-
       // render trip page -> for now it doesn't exist, uncomment when made
-      res.json(trips);
-      //res.render('trips', {trip_info: trips, logged_in: req.session.logged_in});
+      // res.json(trips[0].trips);
+      res.render("dashboard", {
+        trip_info: trips[0].trips,
+        logged_in: req.session.logged_in,
+      });
     } catch (err) {
       console.log(err);
     }
