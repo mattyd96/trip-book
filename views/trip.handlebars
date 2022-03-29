@@ -13,10 +13,11 @@
   </section>
   <section class="users flex flex-col gap-4 w-full">
     <h2 class="font-bold text-2xl">Users</h2>
-
-    {{#each trip_info.users}}
-    {{> user-card creator='creator'}}
-    {{/each}}
+    <div class="grid grid-cols-1 divide-y-2 divide-gray-400">
+      {{#each trip_info.users}}
+      {{> user-card creator='creator'}}
+      {{/each}}
+    </div>
 
     <button type="button" class="add-btn py-2 px-4 rounded font-bold bg-gray-300 hover:bg-green-300">Add User</button>
   </section>

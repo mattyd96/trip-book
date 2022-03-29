@@ -1,25 +1,22 @@
 // toggle nav
-const navToggle = () => {
-  const menu = document.querySelector('.menu-items');
-  const hamburger = document.querySelector('.hamburger-icon');
-  const close = document.querySelector('.close-icon');
+const menuBtn = document.querySelector("#mobile-menu-btn");
+const mobileMenu = document.querySelector("#mobile-menu");
 
-  menu.classList.toggle('mobile-hide');
-  hamburger.classList.toggle('mobile-hide');
-  close.classList.toggle('mobile-hide');
-};
+menuBtn.addEventListener("click", () => {
+  mobileMenu.classList.toggle("hidden");
+});
 
 // logout function
 const logout = async () => {
   // logout
-  const response = await fetch('/users/logout', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' }
+  const response = await fetch("/users/logout", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
   });
   // go to home on success
   if (response.ok) {
-    document.location.assign('/');
+    document.location.assign("/");
   } else {
-    console.log('error when logging out');
+    console.log("error when logging out");
   }
-}
+};
