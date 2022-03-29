@@ -1,0 +1,32 @@
+[
+  {
+    "user_id": 1,
+    "trip_id": 1,
+    "name": "casey-horner-75_s8iWHKLs-unsplash",
+    "link": "/images/casey-horner-75_s8iWHKLs-unsplash.jpg"
+  },
+  {
+    "user_id": 2,
+    "trip_id": 1,
+    "name": "dan-freeman-hIKVSVKH7No-unsplash",
+    "link": "/images/dan-freeman-hIKVSVKH7No-unsplash.jpg"
+  },
+  {
+    "user_id": 3,
+    "trip_id": 1,
+    "name": "sophie-turner-LZVmvKlchM0-unsplash",
+    "link": "/images/sophie-turner-LZVmvKlchM0-unsplash.jpg"
+  },
+  {
+    "user_id": 4,
+    "trip_id": 1,
+    "name": "thomas-hetzler-6F6WOgqkT2I-unsplash",
+    "link": "/images/thomas-hetzler-6F6WOgqkT2I-unsplash.jpg"
+  },
+  {
+    "user_id": 1,
+    "trip_id": 1,
+    "name": "tobias-keller-73F4pKoUkM0-unsplash",
+    "link": "/images/tobias-keller-73F4pKoUkM0-unsplash.jpg"
+  }
+]

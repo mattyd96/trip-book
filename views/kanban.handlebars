@@ -1,0 +1,69 @@
+<section class="heading flex justify-between items-center mb-4">
+  <h1 class="text-2xl font-bold">Trip Board</h1>
+  <button class="add-item py-1 px-4 font-medium rounded bg-gray-300 hover:bg-green-300">Add</button>
+</section>
+<!-- kanban container -->
+<section class="kanban flex flex-wrap gap-4 h-full">
+
+  <!-- first column : ideas -->
+  <div class="column c1">
+    <section class="column-head">
+      <h2>Ideas</h2>
+      {{!-- <button class="add-item py-1 px-4 font-medium rounded bg-gray-300 hover:bg-green-300">Add</button> --}}
+    </section>   
+    <section class="items">
+      {{#each c1ItemsList}}
+      {{> kanban-card}}
+      {{/each}}
+    </section>
+  </div>
+
+  <!-- second column : planned -->
+  <div class="column c2">
+    <section class="column-head">
+      <h2>Planned</h2>
+    </section>
+    <section class="items">
+      {{#each c2ItemsList}}
+      {{> kanban-card}}
+      {{/each}}
+    </section>
+  </div>
+
+  <!-- third column : finished -->
+  <div class="column c3">
+    <section class="column-head">
+      <h2>Finished</h2>
+    </section>
+    <section class="items">
+      {{#each c3ItemsList}}
+      {{> kanban-card}}
+      {{/each}}
+    </section>
+  </div>
+</section>
+
+<!-- add item modal -->
+<aside class="modal-container hidden">
+  <article class="modal overflow-hidden">
+    <section class="modal-heading py-3 px-4">
+      <h2 class="text-lg font-bold">Add a new item</h2>
+    </section>
+    <section class="modal-content">
+      <form action="POST" id="add-item-form" class="flex flex-col">
+        <label for="title" class="font-medium">Title</label>
+        <input type="text" name="title" id="title" class="border-2 rounded">
+        <label for="content" class="font-medium">Content</label>
+        <textarea name="content" id="content" rows="10" class="border-2 rounded"></textarea>
+        <section class="action-btns pt-3">
+          <button type="button" class="cancel-btn py-1 px-2 font-medium rounded bg-gray-300 hover:bg-red-500">Cancel</button>
+          <button class="add-btn font-medium rounded bg-gray-300 hover:bg-green-300">Add</button>
+        </section>
+      </form>
+    </section>
+  </article>
+</aside>
+
+<script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.12/lib/draggable.bundle.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.12/lib/plugins/swap-animation.js"></script>
+<script src="/javascripts/kanban.js"></script>

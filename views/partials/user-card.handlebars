@@ -1,0 +1,9 @@
+<article class="user-card flex justify-between items-center py-2 px-4">
+  <h3 class="font-bold text-lg">👤 {{username}}</h3>
+  {{#if creator}}
+    <button
+      class="delete-btn py-2 px-4 rounded text-white font-bold bg-gray-500 hover:bg-red-500"
+      id="{{id}}"
+    >Remove</button>
+  {{/if}}
+</article>

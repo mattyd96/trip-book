@@ -1,0 +1,39 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TripBook</title>
+    <link rel="icon" 
+      type="image/png" 
+      href="./images/icon.png">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://releases.transloadit.com/uppy/v2.8.0/uppy.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/main.css" />
+    {{#if style}}
+      <link rel="stylesheet" href="/stylesheets/{{style}}.css" />
+    {{/if}}
+  </head>
+  <body class="bg-yellow-100">
+    <header>
+    {{#if logged_in}}
+      {{> user-header}}
+    {{else}}
+      {{> guest-header}}
+    {{/if}}
+    </header>
+    <main class="main-container px-4 md:px-8">
+      {{{body}}}
+    </main>
+    <script src="/javascripts/nav.js"></script>
+  </body>
+</html>
