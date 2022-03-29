@@ -1,17 +1,23 @@
-<h1 class="text-2xl font-bold mb-4">{{trip_info.name}}</h1>
+<div class="flex justify-between mb-4">
+  <h1 class="text-2xl font-bold">{{trip_info.name}}</h1>
+  {{!-- {{#if creator}} --}}
+    <button id="destroy-btn" class="py-2 px-4 rounded text-white font-bold bg-gray-500 hover:bg-red-500" data-id="{{trip_info.id}}">Delete</button>
+  {{!-- {{/if}} --}}
+</div>
 <section class="trips-menu flex flex-wrap gap-4">
-  <section class="kanban-link h-44 basis-full md:basis-0 md:grow flex justify-center items-center bg-[#8BF1F1] rounded hover:cursor-pointer">
-    <h2 class="text-3xl font-bold">Trip Kanban</h2>
+  <section class="kanban-link h-44 basis-full md:basis-0 md:grow flex justify-center items-center bg-secondary rounded hover:cursor-pointer">
+    <h2 class="text-3xl font-bold">🚐 Board</h2>
   </section>
-  <section class="gallery-link h-44 basis-full md:basis-0 md:grow flex justify-center items-center bg-[#FFCFCF] rounded hover:cursor-pointer">
-    <h2 class="text-3xl font-bold">Pictures!</h2>
+  <section class="gallery-link h-44 basis-full md:basis-0 md:grow flex justify-center items-center bg-tertiary rounded hover:cursor-pointer">
+    <h2 class="text-3xl font-bold">📷 Gallery</h2>
   </section>
   <section class="users flex flex-col gap-4 w-full">
     <h2 class="font-bold text-2xl">Users</h2>
-
-    {{#each trip_info.users}}
-    {{> user-card creator='creator'}}
-    {{/each}}
+    <div class="grid grid-cols-1 divide-y-2 divide-gray-400">
+      {{#each trip_info.users}}
+      {{> user-card creator='creator'}}
+      {{/each}}
+    </div>
 
     <button type="button" class="add-btn py-2 px-4 rounded font-bold bg-gray-300 hover:bg-green-300">Add User</button>
   </section>
@@ -29,4 +35,5 @@
     </form>
   </article>
 </aside>
+
 <script src="/javascripts/trip.js"></script>

@@ -10,8 +10,8 @@ html {
   min-width: 15rem;
   min-height: 15rem;
   padding: 1rem 2rem;
-  background-color: #D8FCE6;
-  border-radius: .25rem;
+  background-color: #d8fce6;
+  border-radius: 0.25rem;
 }
 
 .column-head {
@@ -35,16 +35,12 @@ html {
   scrollbar-width: medium;
 }
 
-.heading {
-  background-color: #8BF1F1;
-}
-
 .c2 .heading {
-  background-color: #FFC89A;
+  background-color: #ffc89a;
 }
 
 .c3 .heading {
-  background-color: hsla(240, 0%, 0%, .5);
+  background-color: hsla(240, 0%, 0%, 0.5);
 }
 
 .modal-container {
@@ -56,19 +52,19 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: hsla(240, 0%, 0%, .5);
+  background-color: hsla(240, 0%, 0%, 0.5);
 }
 
 .modal {
   background-color: white;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   width: 90%;
   max-width: 25rem;
-  margin:auto;
+  margin: auto;
 }
 
 .modal-heading {
-  background-color: #FFE5D9;
+  background-color: #ffe5d9;
 }
 
 .modal-content {
@@ -83,7 +79,7 @@ html {
 }
 
 .action-btns button {
-  width: calc(50% - .5rem);
+  width: calc(50% - 0.5rem);
 }
 
 .hidden {
@@ -94,23 +90,23 @@ button:hover {
   cursor: pointer;
 }
 
- /* width */
+/* width */
 .items::-webkit-scrollbar {
-  width: .75rem;
+  width: 0.75rem;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: hsla(240, 0%, 0%, 0)
+  background: hsla(240, 0%, 0%, 0);
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: #7f7f7f;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555555;
-} 
+}

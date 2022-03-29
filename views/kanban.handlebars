@@ -1,3 +1,7 @@
+<section class="heading flex justify-between items-center mb-4">
+  <h1 class="text-2xl font-bold">Trip Board</h1>
+  <button class="add-item py-1 px-4 font-medium rounded bg-gray-300 hover:bg-green-300">Add</button>
+</section>
 <!-- kanban container -->
 <section class="kanban flex flex-wrap gap-4 h-full">
 
@@ -5,7 +9,7 @@
   <div class="column c1">
     <section class="column-head">
       <h2>Ideas</h2>
-      <button class="add-item py-1 px-4 font-medium rounded bg-gray-300 hover:bg-green-300">Add</button>
+      {{!-- <button class="add-item py-1 px-4 font-medium rounded bg-gray-300 hover:bg-green-300">Add</button> --}}
     </section>   
     <section class="items">
       {{#each c1ItemsList}}

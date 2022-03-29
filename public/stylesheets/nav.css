@@ -4,7 +4,6 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 2rem auto;
 }
 
 nav ul {
@@ -17,7 +16,8 @@ nav ul {
   font-weight: 500;
 }
 
-nav li:hover, nav a:hover {
+nav li:hover,
+nav a:hover {
   color: var(--nav-text-hover);
   cursor: pointer;
 }
@@ -45,7 +45,8 @@ nav a {
 }
 
 @media screen and (max-width: 700px) {
-  nav, nav ul {
+  nav,
+  nav ul {
     flex-direction: column;
   }
 
@@ -68,5 +69,4 @@ nav a {
   .mobile-hide {
     display: none;
   }
-
 }

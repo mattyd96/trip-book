@@ -1,0 +1,24 @@
+<section class="heading flex justify-between items-center mb-4">
+  <h1 class="text-2xl font-bold">Dashboard</h1>
+  <button type="button" class="add-btn py-2 px-4 rounded font-bold bg-gray-300 hover:bg-green-300">Add Trip</button>
+</section>
+<section class="flex flex-col gap-4 w-full">
+  <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {{> trip-card}}
+  </div>
+</section>
+
+<aside class="modal-container flex justify-center items-center absolute top-0 left-0 w-full h-full bg-black/25 hidden">
+  <article class="modal flex flex-col  bg-white rounded overflow-hidden">
+    <section class="modal-header py-2 px-4 bg-green-300">
+      <h2 class="font-bold text-lg">Add a new trip</h2>
+    </section>
+    <form action="POST" id="add-trip-form" class="flex flex-col justify-between py-2 px-4">
+      <label for="trip-entry" class="font-bold">Trip name</label>
+      <input type="text" id="trip-entry" class="border-2 border-gray-500 rounded mt-1">
+      <p class="error-msg hidden">Could not add trip</p>
+      <button class="add-submit-btn py-1 px-2 rounded font-bold bg-gray-300 hover:bg-green-300 mt-4 mb-2">Add Trip</button>
+    </form>
+  </article>
+</aside>
+<script src="/javascripts/dashboard.js"></script>
