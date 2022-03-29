@@ -19,20 +19,11 @@
 
     <link rel="stylesheet" href="/stylesheets/style.css" />
     <link rel="stylesheet" href="/stylesheets/main.css" />
-    {{!-- <link rel="stylesheet" href="/stylesheets/nav.css" /> --}}
     {{#if style}}
       <link rel="stylesheet" href="/stylesheets/{{style}}.css" />
     {{/if}}
   </head>
   <body class="bg-yellow-100">
-    {{!-- <nav>
-      <div id="logo">
-        <div class="hamburger" onclick="navToggle()">
-          <i class="fa fa-bars hamburger-icon"></i>
-          <i class="fa fa-close close-icon mobile-hide"></i>
-        </div>
-      </div>
-    </nav> --}}
     <header>
     {{#if logged_in}}
       {{> user-header}}
