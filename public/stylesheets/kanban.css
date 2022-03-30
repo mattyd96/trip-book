@@ -82,7 +82,7 @@ html {
   width: calc(50% - 0.5rem);
 }
 
-.hidden {
+.hide {
   display: none;
 }
 
